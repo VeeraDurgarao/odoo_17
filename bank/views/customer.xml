@@ -1,0 +1,64 @@
+<odoo>
+    <data>
+        <record id="view_bank_bank_form" model="ir.ui.view">
+            <field name="name">customer_bank.form.views</field>
+            <field name="model">customer.bank</field>
+            <field name="arch" type="xml">
+                <form string="customer">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="account_number"/>
+                            <field name="location"/>
+                            <field name="assets"/>
+                            <field name="Loans_List"/>
+                            <field name="status"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="view_bank_tree" model="ir.ui.view">
+            <field name="name">customer_bank.tree.views</field>
+            <field name="model">customer.bank</field>
+            <field name="arch" type="xml">
+                <tree string="customer">
+                    <field name="name"/>
+                    <field name="account_number"/>
+                    <field name="location"/>
+                    <field name="assets"/>
+                    <field name="Loans_List" widget="many2many_tags"/>
+                    <field name="status"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="view_bank_bank_pivot" model="ir.ui.view">
+            <field name="name">customer_bank.pivot.views</field>
+            <field name="model">customer.bank</field>
+            <field name="arch" type="xml">
+                <pivot>
+                    <field name="name"/>
+                    <field name="account_number"/>
+                    <field name="location"/>
+                    <field name="assets"/>
+                    <field name="Loans_List"/>
+                    <field name="status"/>
+                </pivot>
+            </field>
+        </record>
+
+
+        <record id="customer_bank_action_id" model="ir.actions.act_window">
+            <field name="name">customer LIST</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">customer.bank</field>
+            <field name="view_mode">tree,form,pivot</field>
+            <field name="context">{'status': 'draft'}</field>
+        </record>
+    </data>
+</odoo>
+

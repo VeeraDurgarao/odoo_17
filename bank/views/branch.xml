@@ -1,0 +1,89 @@
+<odoo>
+    <data noupdate="1">
+        <record id="view_button_model_form" model="ir.ui.view">
+            <field name="name">button_model.form.views</field>
+            <field name="model">button.model</field>
+            <field name="arch" type="xml">
+                <form string="customer">
+                    <header>
+                        <!--                        <button string="Search" class="oe_highlight" type="object" name="check_orm" data-hotkey="q"/>-->
+                        <button string="SearchRead" class="oe_highlight" type="object" name="searchRead" data-hotkey="q"/>
+                        <button string="readGroup" class="oe_highlight" type="object" name="readGroup" data-hotkey="q"/>
+                        <button string="filter" class="oe_highlight" type="object" name="filter" data-hotkey="q"/>
+                        <button string="nameGet" class="oe_highlight" type="object" name="name_get" data-hotkey="q"/>
+                        <button string="mapping" class="oe_highlight" type="object" name="mapping" data-hotkey="q"/>
+                    </header>
+                    <header>
+                        <button name="%(bank.action_employee_bank_action_id)d" string="Employee" type="action"
+                                class="oe_highlight"/>
+                    </header>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="ref_no"/>
+                        </h1>
+                    </div>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <!--                            <field name="signature" widget="signature"/>-->
+                            <field name="location"/>
+                            <field name="email"/>
+                            <field name="status"/>
+                            <field name="Contact"/>
+                            <field name="Branch_Code"/>
+<!--                            <field name="branch"/>-->
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_button_model_tree" model="ir.ui.view">
+            <field name="name">button_model.tree.views</field>
+            <field name="model">button.model</field>
+            <field name="arch" type="xml">
+                <tree string="button">
+                    <field name="ref_no"/>
+                    <field name="name"/>
+                    <field name="location"/>
+                    <field name="email"/>
+                    <field name="status"/>
+                    <field name="Contact"/>
+                    <field name="Branch_Code"/>
+<!--                       <field name="branch"/>-->
+                </tree>
+            </field>
+        </record>
+
+        <record id="button_search_panel_search" model="ir.ui.view">
+            <field name="name">button_model.search.views</field>
+            <field name="model">button.model</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="location"/>
+                    <field name="email"/>
+                    <field name="status"/>
+                    <field name="Contact"/>
+                    <field name="Branch_Code"/>
+                    <separator>
+                        <filter string="Status" name="status" domain="[('status', '=', 'active')]"/>
+                    </separator>
+                    <group expand="0" string="Group By">
+                        <filter name="status" string="Status" context="{'group_by': 'status'}"/>
+                    </group>
+                    <searchpanel>
+                        <field name="status" enable_counters="1"/>
+                    </searchpanel>
+                </search>
+            </field>
+        </record>
+        <record id="button_model_action_id" model="ir.actions.act_window">
+            <field name="name">Button</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">button.model</field>
+            <field name="view_mode">tree,form,pivot</field>
+            <field name="context">{'default_status': 'inactive'}</field>
+        </record>
+    </data>
+</odoo>
+

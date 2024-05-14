@@ -1,0 +1,75 @@
+<odoo>
+    <data>
+        <!-- Form View -->
+        <record id="view_bank_bank_form" model="ir.ui.view">
+            <field name="name">bank_loan.form.views</field>
+            <field name="model">bank.loan</field>
+            <field name="arch" type="xml">
+                <form string="Loan">
+                    <group>
+                        <field name="name"/>
+                        <field name="amount"/>
+                        <field name="interest_rate"/>
+                        <field name="duration"/>
+                        <field name="total_interest" readonly="1"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <!-- Tree View -->
+        <record id="view_bank_bank_tree" model="ir.ui.view">
+            <field name="name">bank_loan.tree.views</field>
+            <field name="model">bank.loan</field>
+            <field name="arch" type="xml">
+                <tree string="Loan">
+                    <!--                    search_view_id="view_bank_loan_search">-->
+                    <field name="name"/>
+                    <field name="amount"/>
+                    <field name="interest_rate"/>
+                    <field name="duration"/>
+                    <field name="total_interest"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <!-- Graph View -->
+        <record id="view_bank_bank_graph" model="ir.ui.view">
+            <field name="name">bank_loan.graph.views</field>
+            <field name="model">bank.loan</field>
+            <field name="arch" type="xml">
+                <graph string="Loan">
+                    <field name="name"/>
+                    <field name="amount"/>
+                    <field name="interest_rate"/>
+                    <field name="duration"/>
+                    <field name="total_interest"/>
+                </graph>
+            </field>
+        </record>
+
+        <!-- Pivot View -->
+        <record id="view_bank_bank_pivot" model="ir.ui.view">
+            <field name="name">bank_loan.pivot.views</field>
+            <field name="model">bank.loan</field>
+            <field name="arch" type="xml">
+                <pivot string="Loan">
+                    <field name="name"/>
+                    <field name="amount"/>
+                    <field name="interest_rate"/>
+                    <field name="duration"/>
+                    <field name="total_interest"/>
+                </pivot>
+            </field>
+        </record>
+
+        <!-- Action -->
+        <record id="bank_loan_action_id" model="ir.actions.act_window">
+            <field name="name">Loan List</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">bank.loan</field>
+            <field name="view_mode">tree,form,graph,pivot</field>
+        </record>
+    </data>
+</odoo>

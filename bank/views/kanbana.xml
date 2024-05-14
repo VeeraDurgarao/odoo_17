@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Define the Kanban view for button.model -->
+    <record id="view_button_model_kanban" model="ir.ui.view">
+        <field name="name">button.model.kanban.view</field>
+        <field name="model">button.model</field>
+        <field name="arch" type="xml">
+            <kanban class="o_button_kanban_view">
+                <field name="name"/>
+                <field name="location"/>
+                <field name="email"/>
+                <field name="Contact"/>
+                <field name="Branch_Code"/>
+                <field name="status"/>
+                <!-- Add any additional fields you want to display on the Kanban cards -->
+                <!-- You can also add tags, due dates, etc. -->
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_content">
+                            <!-- Customize the layout of Kanban cards here -->
+                            <div class="oe_kanban_details">
+                                <div>
+                                    <field name="name" class="oe_kanban_title"/>
+                                </div>
+                                <div>
+                                    <field name="location" class="oe_kanban_subtitle"/>
+                                </div>
+                                <div>
+                                    <field name="email" class="oe_kanban_subtitle"/>
+                                </div>
+                                <div>
+                                    <field name="Contact" class="oe_kanban_subtitle"/>
+                                </div>
+                                <div>
+                                    <field name="Branch_Code" class="oe_kanban_subtitle"/>
+                                </div>
+                                <div>
+                                    <field name="status" class="oe_kanban_subtitle"/>
+                                </div>
+                                <!-- Add additional fields you want to display -->
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- Define the action to open the Kanban view -->
+    <record id="action_button_model_kanban" model="ir.actions.act_window">
+        <field name="name">Button Model Kanban</field>
+        <field name="res_model">button.model</field>
+        <field name="view_mode">kanban</field>
+        <field name="help" type="html">
+            <p class="oe_view_no_content_create">
+                Create the first button record.
+            </p>
+        </field>
+    </record>
+
+</odoo>

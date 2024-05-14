@@ -1,0 +1,48 @@
+<odoo>
+    <template id="report_commission_model">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h2>Sales Commission Print</h2>
+
+                    </div>
+                    <table style="font-family: arial, sans-serif;border-collapse: collapse;width: 100%;">
+                        <thead>
+                            <tr class="p-3">
+                                <th>START DATE:</th>
+                                <th>END DATE:</th>
+                                <th>customer Name</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td >
+                                    <span t-field="o.start_date"/>
+                                </td>
+                                <td >
+                                    <span t-field="o.end_date"/>
+                                </td>
+                                <td>
+                                    <span t-field="o.list"/>
+                                </td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <record id="action_report_commission_model" model="ir.actions.report">
+    <field name="name">Sale Commission Print</field>
+    <field name="model">commission.model</field>
+    <field name="report_type">qweb-pdf</field>
+    <field name="report_name">bank.report_commission_model</field>
+    <field name="report_file">bank.report_commission_model</field>
+    <field name="binding_model_id" ref="model_commission_model"/>
+    <field name="binding_type">report</field>
+</record>
+
+</odoo>

@@ -1,0 +1,105 @@
+<odoo>
+    <data>
+        <record id="view_bank_bank_form" model="ir.ui.view">
+            <field name="name">bank_transaction.form.views</field>
+            <field name="model">bank.transaction</field>
+            <field name="arch" type="xml">
+                <form string="Transaction">
+                    <notebook>
+                <!-- Notebook Page 1 -->
+                <page string="Transaction List">
+                    <header>
+                        <button name="%(bank.bank_account_action_id)d" string="Accounts List" type="action"
+                                class="oe_highlight"/>
+                    </header>
+                    <header>
+                        <div name="button_box" position="inside">
+                            <button class="oe_stat_button" type="object" name="action_property_list">
+                                <field string="Transactions" name="listed_property_count" widget="statinfo"/>
+                            </button>
+                        </div>
+                    </header>
+                    <header>
+                        <field name="status" widget="statusbar"/>
+                        <button name="resignation" string="Resigned" type="object" class="oe_highlighht"/>
+                        <button name="revert_to_active" string="Revert to Active" type="object" class="oe_highlight"/>
+                    </header>
+
+                    <sheet>
+                        <group>
+                            <field name="account_number"/>
+                            <field name="date"/>
+                            <field name="amount"/>
+                            <field name="transaction_type"/>
+                            <field name="account_id"/>
+                            <field name="partner_id"/>
+                        </group>
+                    </sheet>
+                </page>
+                    </notebook>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_bank_transaction_bank" model="ir.ui.view">
+            <field name="name">bank.transaction</field>
+            <field name="model">bank.transaction</field>
+            <field name="arch" type="xml">
+                <tree>
+
+                    <field name="account_number"/>
+                    <field name="date"/>
+                    <field name="amount"/>
+                    <field name="transaction_type"/>
+                    <field name="account_id"/>
+                    <field name="partner_id"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="bank_transaction_search_panel_search" model="ir.ui.view">
+            <field name="name">bank.transaction.search</field>
+            <field name="model">bank.transaction</field>
+            <field name="arch" type="xml">
+                <search position="inside">
+                    <!--                    <field name="name" filter_domain="['|', '|', '|', ('name', 'ilike', self), ('mobile', 'ilike', self), ('age', 'ilike', self), ('gender', 'ilike', self)]"/>-->
+                    <field name="account_number"/>
+                    <field name="date"/>
+                    <field name="amount"/>
+                    <field name="transaction_type"/>
+                    <field name="account_id"/>
+                    <field name="partner_id"/>
+                    <searchpanel>
+                        <field name="transaction_type" enable_counters="1"/>
+                    </searchpanel>
+                </search>
+            </field>
+        </record>
+
+
+        <record id="view_bank_bank_pivot" model="ir.ui.view">
+            <field name="name">bank_transaction.pivot.views</field>
+            <field name="model">bank.transaction</field>
+            <field name="arch" type="xml">
+                <pivot>
+                    <field name="account_number"/>
+                    <field name="date"/>
+                    <field name="amount"/>
+                    <field name="transaction_type"/>
+                    <field name="account_id"/>
+                    <field name="partner_id"/>
+                </pivot>
+            </field>
+        </record>
+
+
+        <record id="bank_transaction_action_id" model="ir.actions.act_window">
+            <field name="name">Transaction LIST</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">bank.transaction</field>
+            <field name="view_mode">tree,form,pivot</field>
+        </record>
+    </data>
+</odoo>
+

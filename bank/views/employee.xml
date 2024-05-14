@@ -1,0 +1,70 @@
+<odoo>
+    <data>
+        <record id="view_bank_bank_form" model="ir.ui.view">
+            <field name="name">employee_bank.form.views</field>
+            <field name="model">employee.bank</field>
+            <field name="arch" type="xml">
+                <form string="Bank">
+
+                    <!--                    <header>-->
+                    <!--                        <button name="write" string="Check_Orm" type="object" class="oe_highlight"/>-->
+                    <!--                    </header>-->
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="emp_id"/>
+                            <field name="assigned_cus_ids" widget="many2many_tags"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_bank_customer_bank" model="ir.ui.view">
+            <field name="name">employee.bank</field>
+            <field name="model">employee.bank</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="emp_id"/>
+                    <field name="assigned_cus_ids" widget="many2many_tags"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_bank_customer_bank_graph" model="ir.ui.view">
+            <field name="name">employee.bank</field>
+            <field name="model">employee.bank</field>
+            <field name="arch" type="xml">
+                <graph>
+                    <field name="name"/>
+                    <field name="emp_id"/>
+                    <field name="assigned_cus_ids"/>
+                </graph>
+            </field>
+        </record>
+
+
+        <record id="view_bank_customer_bank_pivot" model="ir.ui.view">
+            <field name="name">employee.bank</field>
+            <field name="model">employee.bank</field>
+            <field name="arch" type="xml">
+                <pivot>
+                    <field name="name"/>
+                    <field name="emp_id"/>
+                    <field name="assigned_cus_ids"/>
+                </pivot>
+            </field>
+        </record>
+
+
+        <record id="action_employee_bank_action_id" model="ir.actions.act_window">
+            <field name="name">EMPLOYEE LIST</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">employee.bank</field>
+            <field name="view_mode">tree,form,graph,pivot</field>
+        </record>
+
+
+    </data>
+</odoo>

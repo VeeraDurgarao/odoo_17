@@ -1,0 +1,19 @@
+<odoo>
+    <data>
+        <record id="button_model_management" model="ir.sequence">
+            <field name="name">Button sequence</field>
+            <field name="code">button.model</field>
+            <field name="prefix">Ban</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <record id="recycle_account_management" model="ir.sequence">
+            <field name="name">Recycle sequence</field>
+            <field name="code">recycle.account</field>
+            <field name="prefix">Ban</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,21 @@
+<odoo>
+    <data>
+        <record id="sale_order_inherit_id" model="ir.ui.menu">
+            <field name="name">commission</field>
+            <field name="sequence" eval="100"/>
+            <field name="parent_id" ref="sale.sale_menu_root"/>
+            <field name="action" ref="sale.action_quotations_with_onboarding"/>
+        </record>
+
+       <menuitem id="sale_order_inherit_submenu_id"
+              name="Commission"
+              parent="sale_order_inherit_id"
+              action="sale_order_commission_action_id"/>
+
+        <menuitem id="sale_order_line_inherit_submenu_id"
+              name="commission order Line"
+              parent="sale_order_inherit_id"
+              action="bank.sale_order_line_commission_action_id"/>
+
+    </data>
+</odoo>

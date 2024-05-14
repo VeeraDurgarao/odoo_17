@@ -1,0 +1,48 @@
+<odoo>
+    <data>
+       <record id="view_commission_id" model="ir.ui.view">
+    <field name="name">commission_model.form.views</field>
+    <field name="model">commission.model</field>
+    <field name="arch" type="xml">
+        <form string="Loan">
+            <header>
+                <button name="action_show_matching_orders" type="object" string="List"/>
+            </header>
+            <group>
+                <field name="start_date"/>
+                <field name="end_date"/>
+                <field name="customer"/>
+            </group>
+            <notebook>
+                <page string="Matching Order List">
+                    <field name="list"/>
+                </page>
+            </notebook>
+        </form>
+    </field>
+</record>
+
+        <record id="view_inherit_commission_id" model="ir.ui.view">
+            <field name="name">commission model</field>
+            <field name="model">commission.model</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+                    <field name="customer"/>
+
+                </tree>
+
+
+            </field>
+        </record>
+
+
+        <record id="sale_order_commission_action_id" model="ir.actions.act_window">
+            <field name="name">sale LIST</field>
+            <field name="res_model">commission.model</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">form,tree</field>
+        </record>
+    </data>
+</odoo>

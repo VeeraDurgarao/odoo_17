@@ -1,0 +1,60 @@
+<odoo>
+    <data>
+
+
+    <menuitem id="menu_bank_root"
+              name="Banks"
+              sequence="0"/>
+
+    <menuitem id="menu_account_master"
+              name="Account"
+              parent="menu_bank_root"
+              action="bank_account_action_id"
+              sequence="1"/>
+
+    <menuitem id="menu_employee_master"
+              name="Employee"
+              parent="menu_bank_root"
+              action="action_employee_bank_action_id"
+              sequence="2"/>
+
+    <menuitem id="menu_customer_master"
+              name="Customer"
+              parent="menu_bank_root"
+              action="customer_bank_action_id"
+              sequence="3"/>
+
+    <menuitem id="menu_loan_master"
+              name="Loan"
+              parent="menu_bank_root"
+              action="bank_loan_action_id"
+              sequence="4"/>
+
+    <menuitem id="menu_transaction_master"
+              name="Transaction"
+              parent="menu_bank_root"
+              action="bank_transaction_action_id"
+              sequence="5"/>
+
+    <menuitem id="menu_button_root"
+              name="Branch"
+              parent="menu_bank_root"
+              sequence="6"/>
+    <menuitem id="menu_button_master"
+              name="branches"
+              parent="menu_button_root"
+              action="button_model_action_id"
+              sequence="7"/>
+    <menuitem id="menu_button_model_kanban_master"
+              name="Branch Kanban"
+              parent="menu_button_root"
+              action="action_button_model_kanban"
+              sequence="8"/>
+
+    <menuitem id="menu_recycle_account_master"
+              name="Recycle List"
+              parent="menu_bank_root"
+              action="recycle_account_action_id"
+              sequence="9"/>
+     </data>
+</odoo>
