@@ -11,6 +11,19 @@ class BankRecycleAccount(models.Model):
 
     seq_no = fields.Text(string="Ref No", required=True, readonly=True, default=lambda self: _('NEW'))
 
+
+    # @api.model
+    # def create(self, vals):
+    #     record = super(BankRecycleAccount, self).create(vals)
+    #     return record
+    #
+    # def action_send_email(self):
+    #     template_id = self.env.ref('custom_module.email_template_recycle_account').id
+    #     if not template_id:
+    #         raise ValidationError(_('Email template not found'))
+    #     self.env['mail.template'].browse(template_id).send_mail(self.id, force_send=True)
+
+
     # ORM CREATE METHOD
     @api.model
     def create(self, vals):
@@ -112,7 +125,7 @@ class StockOrderLineNew(models.Model):
 #         fields += ['extra']
 #         return fields
 
-# class StockMovePickingNew(models.Model):
-#     _inherit = 'stock.move'
-#     extra = fields.Integer(string="Extra Tax")
-# related='sale_line_id.extra',
+class StockMovePickingNew(models.Model):
+    _inherit = 'stock.move'
+    extra = fields.Integer(string="Extra Tax")
+related='sale_line_id.extra',

@@ -19,6 +19,7 @@ class Button(models.Model):
     # signature = fields.Binary(string='Signature')
     ref_no = fields.Text(string="Ref No", required=True, readonly=True, default=lambda self: _('NEW'))
 
+
     # ORM CREATE METHOD
     @api.model
     def create(self, vals):

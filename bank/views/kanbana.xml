@@ -57,5 +57,9 @@
             </p>
         </field>
     </record>
-
+    <menuitem id="menu_button_model_kanban_master"
+              name="Branch Kanban"
+              parent="menu_button_root"
+              action="action_button_model_kanban"
+              sequence="8"/>
 </odoo>

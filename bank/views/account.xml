@@ -13,6 +13,7 @@
                         <group>
                             <group>
                                 <field name="name"/>
+                                <field name="email"/>
                                 <field name="account_number"/>
                                 <field name="mobile"/>
                                 <field name="age"/>
@@ -45,6 +46,7 @@
                 <tree string="Account">
                     <field name="seq" widget="handle"/>
                     <field name="name"/>
+                    <field name="email"/>
                      <field name="account_number"/>
                     <field name="mobile"/>
                     <field name="age"/>

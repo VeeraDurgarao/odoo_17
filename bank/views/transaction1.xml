@@ -17,12 +17,11 @@
                             <button class="oe_stat_button" type="object" name="action_property_list">
                                 <field string="Transactions" name="listed_property_count" widget="statinfo"/>
                             </button>
+                               <button name="generate_excel_report" string="Print Excel" type="object" class="oe_highlight"/>
                         </div>
                     </header>
                     <header>
-                        <field name="status" widget="statusbar"/>
-                        <button name="resignation" string="Resigned" type="object" class="oe_highlighht"/>
-                        <button name="revert_to_active" string="Revert to Active" type="object" class="oe_highlight"/>
+                        <field name="transaction_type" widget="statusbar"/>
                     </header>
 
                     <sheet>
@@ -33,6 +32,9 @@
                             <field name="transaction_type"/>
                             <field name="account_id"/>
                             <field name="partner_id"/>
+                            <field name="name"/>
+                            <field name="email"/>
+                            <field name="mobile"/>
                         </group>
                     </sheet>
                 </page>
@@ -53,6 +55,9 @@
                     <field name="transaction_type"/>
                     <field name="account_id"/>
                     <field name="partner_id"/>
+                   <field name="name"/>
+                    <field name="email"/>
+                    <field name="mobile"/>
                 </tree>
             </field>
         </record>
@@ -93,6 +98,23 @@
             </field>
         </record>
 
+        <record id="email_customer_view_my" model="ir.ui.view">
+        <field name="name">res.partner_view_id</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="before">
+                 <group>
+                        <field name="customer_rank" invisible="1"/>
+                    </group>
+                <header>
+ <button name="action_send_email" type="object" string="Send Mail"
+                                invisible="customer_rank == 0"/>
+                </header>
+            </xpath>
+        </field>
+    </record>
+
 
         <record id="bank_transaction_action_id" model="ir.actions.act_window">
             <field name="name">Transaction LIST</field>
@@ -100,6 +122,11 @@
             <field name="res_model">bank.transaction</field>
             <field name="view_mode">tree,form,pivot</field>
         </record>
+        <menuitem id="menu_transaction_master"
+              name="Transaction"
+              parent="menu_bank_root"
+              action="bank_transaction_action_id"
+              sequence="5"/>
     </data>
 </odoo>
 

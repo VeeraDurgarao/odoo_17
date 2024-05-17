@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="mail_template_blog" model="mail.template">
+            <field name="name">Email Template For Blog</field>
+            <field name="model_id" ref="bank.model_bank_transaction"/>
+            <field name="email_from">{{user.login}}</field>
+            <field name="email_to">{{object.email}}</field>
+            <field name="subject">Mail Template: Demo Mail</field>
+            <field name="report_template_ids" eval="[(4, ref('bank.action_report_commission_model'))]"/>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <div style="justify-content: center; padding:0.6rem;padding-left: 35px;text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;width:40%">
+                        <h5>
+                            Hi, <t t-esc="object.name"/>
+                        </h5>
+                        <div>
+                            <p>
+                                <t t-esc="object.name"/>
+                                <t t-esc="object.email"/>
+                                <t t-esc="object.mobile"/>
+                                This is a demo mail sent to you for checking the mail template.
+                            </p>
+                        </div>
+                    </div>
+                    <br/>
+                    <br/>
+                    Regards, <br/>
+                    <t t-esc="user.name"/>
+                </div>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -17,5 +17,10 @@
               parent="sale_order_inherit_id"
               action="bank.sale_order_line_commission_action_id"/>
 
+        <menuitem id="sale_order_xl_inherit_submenu_id"
+              name="Print Xl Report"
+              parent="sale_order_inherit_id"
+              action="bank.xlreport_wizard_action_id"/>
+
     </data>
 </odoo>

@@ -7,6 +7,7 @@ class BankAccount(models.Model):
     _description = "New bankAccount"
 
     name = fields.Char(string="Name", help='Name of the account holder')
+    email = fields.Char(string="email")
     account_number = fields.Char(string="Account Number",required=True)
     mobile = fields.Char(string="Mobile", help='Mobile Number of the accountHolder')
     age = fields.Integer(string='Age')
@@ -64,6 +65,7 @@ class BankAccount(models.Model):
         if self.completed == True:
             recycle_model = self.env['recycle.account'].create({
                 'name': self.name,
+                'email':self.email,
                 'account_number': self.account_number,
                 'mobile': self.mobile,
                 'age': self.age,

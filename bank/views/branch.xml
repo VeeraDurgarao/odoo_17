@@ -11,12 +11,14 @@
                         <button string="readGroup" class="oe_highlight" type="object" name="readGroup" data-hotkey="q"/>
                         <button string="filter" class="oe_highlight" type="object" name="filter" data-hotkey="q"/>
                         <button string="nameGet" class="oe_highlight" type="object" name="name_get" data-hotkey="q"/>
+
                         <button string="mapping" class="oe_highlight" type="object" name="mapping" data-hotkey="q"/>
                     </header>
                     <header>
                         <button name="%(bank.action_employee_bank_action_id)d" string="Employee" type="action"
                                 class="oe_highlight"/>
                     </header>
+
                     <div class="oe_title">
                         <h1>
                             <field name="ref_no"/>
@@ -84,6 +86,11 @@
             <field name="view_mode">tree,form,pivot</field>
             <field name="context">{'default_status': 'inactive'}</field>
         </record>
+        <menuitem id="menu_button_master"
+              name="branches"
+              parent="menu_button_root"
+              action="button_model_action_id"
+              sequence="7"/>
     </data>
 </odoo>
 

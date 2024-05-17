@@ -4,11 +4,17 @@
     'summary': 'Bank Management System',
     'depends': ['base', 'mail', 'sale', 'stock'],
     'data': ['security/ir.model.access.csv',
-             'data/cus_seq.xml',
+             'security/recycle_account_groups.xml',
+             # 'security/recycle_account_record_rules.xml',
+             'data/CusSeq.xml',
+             'data/EmailTemplate.xml',
+             'data/CustomerEmailTemplate.xml',
              'wizard/demo.xml',
              'wizard/print.xml',
-             'reports/bank.template.xml',
+             'wizard/xlReport.xml',
+             # 'reports/bank.template.xml',
              'reports/sale.commision-qweb.xml',
+             'reports/customerPDF.xml',
              'views/customer.xml',
              'views/employee.xml',
              'views/account.xml',
@@ -21,6 +27,7 @@
             'views/sale_order_commission_view.xml',
 'views/sale_line_oreder_commission.xml',
              'views/sale_inheritate_menu.xml'
+
 
 
              ]
