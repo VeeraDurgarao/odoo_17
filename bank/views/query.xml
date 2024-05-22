@@ -1,0 +1,43 @@
+<odoo>
+    <data>
+        <record id="view_query_bank_graph" model="ir.ui.view">
+            <field name="name">query.graph.views</field>
+            <field name="model">query.bank</field>
+            <field name="arch" type="xml">
+                <graph string="customer">
+                    <field name="name"/>
+                    <field name="account_number"/>
+                    <field name="location"/>
+                    <field name="assets"/>
+                    <field name="status"/>
+                </graph>
+            </field>
+        </record>
+        <record id="view_query_bank_pivot" model="ir.ui.view">
+            <field name="name">query.pivot.views</field>
+            <field name="model">query.bank</field>
+            <field name="arch" type="xml">
+                <pivot string="customer">
+                    <field name="name"/>
+                    <field name="account_number" type="row"/>
+                    <field name="location"/>
+                    <field name="assets"/>
+                    <field name="status"/>
+                </pivot>
+            </field>
+        </record>
+
+        <record id="query_bank_action_id" model="ir.actions.act_window">
+            <field name="name">Query LIST</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">query.bank</field>
+            <field name="view_mode">graph,pivot</field>
+        </record>
+         <menuitem id="menu_query_master"
+              name="Query"
+              parent="menu_bank_root"
+              action="query_bank_action_id"
+              />
+    </data>
+</odoo>
+

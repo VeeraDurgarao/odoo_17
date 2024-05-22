@@ -1,0 +1,40 @@
+<odoo>
+    <data>
+        <record id="view_reports_customer_graph" model="ir.ui.view">
+            <field name="name">reports.customer.graph.views</field>
+            <field name="model">reports.customer</field>
+            <field name="arch" type="xml">
+                <graph string="Report">
+
+                    <field name="signed_by"/>
+                    <field name="signed_on"/>
+                    <field name="origin"/>
+                    <field name="reference"/>
+
+
+                </graph>
+            </field>
+        </record>
+        <record id="view_reports_customer_pivot" model="ir.ui.view">
+            <field name="name">reports.customer.pivot.views</field>
+            <field name="model">reports.customer</field>
+            <field name="arch" type="xml">
+                <pivot string="customer">
+
+                   <field name="signed_by"/>
+                    <field name="signed_on"/>
+                    <field name="origin"/>
+                    <field name="reference"/>
+                </pivot>
+            </field>
+        </record>
+
+        <record id="reports_customer_action_id" model="ir.actions.act_window">
+            <field name="name">Report LIST</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">reports.customer</field>
+            <field name="view_mode">graph,pivot</field>
+        </record>
+    </data>
+</odoo>
+

@@ -8,6 +8,7 @@
             <header>
                 <button name="action_show_matching_orders" type="object" string="List"/>
                    <button name="generates_excel_report" string="Print Excel" type="object" class="oe_highlight"/>
+<!--            <button name="get_custom_data" type="object" string="SQL"/>-->
             </header>
             <group>
                 <field name="start_date"/>

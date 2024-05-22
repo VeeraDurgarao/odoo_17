@@ -1,7 +1,6 @@
 from odoo import fields, models, api, _
 from odoo.exceptions import ValidationError
 
-
 class BankCustomer(models.Model):
     _name = "customer.bank"
     _description = "Bank customer"
@@ -11,13 +10,28 @@ class BankCustomer(models.Model):
     account_number = fields.Char(string="Account Number", required=True)
     location = fields.Char(string="location")
     assets = fields.Integer(string='assets')
+    dob = fields.Date(string="DOB")
     # assigned_emp = fields.Many2one('employee.bank', string="Assigned employee")
     Loans_List = fields.Many2many(comodel_name='bank.loan', string='Loans List', domain=[('duration', '>', '12')])
     image = fields.Binary(string='Image')
     status = fields.Selection([("done", 'Done'), ("draft", "Draft")], string="Status", default="draft")
 
-    @api.constrains('account_number')
+    @api.model
+    def process_new_customers(self):
+        """ Method to process new customer details """
+        new_customers = self.search([('status', '=', 'draft')])
+        for customer in new_customers:
+            customer.status = 'done'
+
+
+
+
+    @api.model
     def check_number(self):
+        today = fields.Date.today()
+        users_with_birthday = self.search([('dob', '=', today)])
+        for user in users_with_birthday:
+            print(f"Happy Birthday, {user.name}!")
         existing_account = self.env['bank.account'].search([('account_number', '=', self.account_number)])
         if not existing_account:
             raise ValidationError("Please create new account.")
@@ -29,6 +43,32 @@ class BankCustomer(models.Model):
         res = super(BankCustomer, self).create(vals)
         print("Create the values>>>>>>>>>>>", vals)
         return res
+
+    # @api.model
+    # def create(self, vals):
+    #     # Get the database cursor
+    #     cr = self.env.cr
+    #
+    #     # Get the table name for the model
+    #     table_name = self._table
+    #
+    #     # Prepare the SQL INSERT statement
+    #     columns = ', '.join(vals.keys())
+    #     values = ', '.join(['%s'] * len(vals))
+    #     insert_query = f"INSERT INTO {table_name} ({columns}) VALUES ({values}) RETURNING id"
+    #
+    #     # Execute the SQL INSERT statement
+    #     cr.execute(insert_query, list(vals.values()))
+    #
+    #     # Fetch the ID of the newly created record
+    #     new_id = cr.fetchone()[0]
+    #
+    #     # Log the creation process
+    #     print("Create the values SQL:", vals)
+    #
+    #     # Fetch the newly created record using the ORM to return it properly
+    #     res = self.browse(new_id)
+    #     return res
 
     #
     #     # ORM write method

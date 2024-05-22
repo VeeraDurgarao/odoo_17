@@ -1,7 +1,7 @@
 import xlsxwriter
 import base64
 import io
-from odoo import api, fields, models,_
+from odoo import api, fields, models, _
 from odoo.exceptions import ValidationError
 
 
@@ -20,10 +20,11 @@ class BankTransaction(models.Model):
     account_id = fields.Many2one('bank.account', string='Account')
     partner_id = fields.Many2one('res.partner', string='Partner')
     email = fields.Char(string="mail")
-    name=fields.Char(string="name")
+    name = fields.Char(string="name")
     mobile = fields.Char(string="mobile")
 
     listed_property_count = fields.Integer(string='Listed Property Count', compute='_compute_listed_property_count')
+
     # status = fields.Selection([('active', "Active"), ('resign', "Resign")], string="status", readonly=True,
     #                           default='active')
     def _get_customer_information(self):
@@ -48,13 +49,12 @@ class BankTransaction(models.Model):
 
         # Write headers with bold format
         sheet.write('A1', 'Account Number', bold_format)
-        sheet.write('B1', 'Date',bold_format)
+        sheet.write('B1', 'Date', bold_format)
         sheet.write('C1', 'Amount', bold_format)
         sheet.write('D1', 'Transaction Type', bold_format)
         sheet.write('E1', 'Email', bold_format)
         sheet.write('F1', 'Name', bold_format)
         sheet.write('G1', 'Mobile', bold_format)
-
 
         sheet.write(row, col, self.account_number, normal_format)
         sheet.write(row, col + 1, self.date, date_format)
@@ -63,7 +63,6 @@ class BankTransaction(models.Model):
         sheet.write(row, col + 4, self.email, normal_format)
         sheet.write(row, col + 5, self.name, normal_format)
         sheet.write(row, col + 6, self.mobile, normal_format)
-
 
         workbook.close()
         output.seek(0)
@@ -95,6 +94,7 @@ class BankTransaction(models.Model):
     def revert_to_active(self):
         for rec in self:
             rec.transaction_type = 'withdraw'
+
     def action_property_list(self):
         return {
             'type': 'ir.actions.act_window',
@@ -141,11 +141,16 @@ class BankTransaction(models.Model):
             elif vals.get('transaction_type') == 'withdraw' and vals.get('amount'):
                 transaction.account_id.write({'balance': transaction.account_id.balance - vals['amount']})
         return super(BankTransaction, self).write(vals)
+
+
 class ResPartner(models.Model):
     _inherit = "res.partner"
 
+    dob = fields.Date(string="DOB")
+
     def customerPrint(self):
         return self.env.ref("bank.action_report_res_partner").report_action(self)
+
     def action_send_email(self):
         self.ensure_one()
         lang = self.env.context.get('lang')
@@ -176,3 +181,20 @@ class ResPartner(models.Model):
             'target': 'new',
             'context': ctx,
         }
+
+    def run_bdy_notification(self):
+        today = fields.Date.today()
+        today_month_day = today.strftime('%m-%d')
+        all_records = self.search([])
+        for rec in all_records:
+            if rec.dob and rec.dob.strftime('%m-%d') == today_month_day:
+                email_values = {
+                    'email_to': rec.email,
+                    'subject': f"Happy Birthday {rec.name}"
+                }
+                print(f"Happy Birthday {rec.display_name}")
+                mail_template = self.env.ref('bank.birthday_email_template')
+                mail_template.send_mail(rec.id, email_values=email_values, force_send=True)
+                print(f"Happy Birthday {rec.display_name} Again")
+
+

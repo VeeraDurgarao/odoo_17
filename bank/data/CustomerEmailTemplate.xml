@@ -13,6 +13,7 @@
                     <div style="justify-content: center; padding:0.6rem;padding-left: 35px;text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;width:40%">
                         <h5>
                             Hi, <t t-esc="object.name"/>
+                            <p>Happy Birthday!</p>
                         </h5>
                         <div>
                             <p>
@@ -28,5 +29,7 @@
                 </div>
             </field>
         </record>
+
+
     </data>
 </odoo>

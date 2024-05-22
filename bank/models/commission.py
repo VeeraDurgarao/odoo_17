@@ -15,6 +15,18 @@ class Commission(models.Model):
 
     list = fields.Many2many('sale.order',string="List",compute="_compute_order_list")
 
+    @api.model
+    def get_custom_data(self,params):
+        query = """
+               SELECT customer
+               FROM commission_model 
+           """
+        params = (10,)
+        print(">>>>>>>>>>>>>>>>>>>>>>>>>",self.env.cr.execute(query, params))
+        self.env.cr.execute(query, params)
+        print("++++++++++++++++++++",self.env.cr.fetchall())
+        return self.env.cr.fetchall()
+
     @api.depends('start_date','end_date')
     def _compute_order_list(self):
         for record in self:
