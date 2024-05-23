@@ -38,8 +38,9 @@ class Button(models.Model):
     def name_get(self):
         result = []
         for rec in self:
-            result.append((rec.id, rec.name))
-            print("Name get method>>>>>>>>", result)
+            # Customize the display name as needed
+            name = f"{rec.name} ({rec.custom_field})"
+            result.append((rec.id, name))
         return result
 
     def searchRead(self):
