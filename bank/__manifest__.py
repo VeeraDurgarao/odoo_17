@@ -10,6 +10,7 @@
              'data/EmailTemplate.xml',
              'data/schedule_action.xml',
              'data/CustomerEmailTemplate.xml',
+             'data/monthly_excel_report.xml',
              'wizard/demo.xml',
              'wizard/print.xml',
              'wizard/xlReport.xml',
